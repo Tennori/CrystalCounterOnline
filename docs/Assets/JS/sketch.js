@@ -3,9 +3,7 @@ let particleCountMin = 5;
 let particleCountMax = 10;
 let minInitialSize = 2;
 let maxInitialSize = 10;
-let emitterX = 800 / 2;
 let emitterY = 800 + 50;
-let emitterSizeX = 800; // エミッターのXサイズ
 let emitterSizeY = 30; // エミッターのYサイズ
 let minTurbulence = 0.1;
 let maxTurbulence = 0.3;
@@ -15,11 +13,15 @@ let minLifespan = 100;
 let maxLifespan = 200;
 let blurStrength = 1; // ブラーの強度 重いのでオミットした
 
+let emitterSizeX; // エミッターのXサイズ
+
 function setup() {
   // キャンバスをウィンドウのサイズに合わせる
-  createCanvas(windowWidth, windowHeight, P2D); // P2DでRGBAモードを使用
+  let canvas = createCanvas(windowWidth, windowHeight, P2D); // P2DでRGBAモードを使用
+  emitterSizeX = windowWidth; // エミッターのXサイズをウィンドウの幅に合わせる
   // 背景を透明にする
   background(0, 0); 
+  canvas.parent('canvas');
 }
 
 function draw() {
@@ -30,7 +32,7 @@ function draw() {
   for (let i = 0; i < particleCount; i++) {
     let initialSize = random(minInitialSize, maxInitialSize);
     let p = new Particle(
-      random(emitterX - emitterSizeX / 2, emitterX + emitterSizeX / 2), // エミッターのX座標
+      random(emitterSizeX) ,// エミッターのX座標
       random(emitterY - emitterSizeY / 2, emitterY + emitterSizeY / 2), // エミッターのY座標
       random(-1, 1), // X軸速度
       random(-5, -1), // Y軸速度
@@ -53,6 +55,12 @@ function draw() {
 
   // ブラーエフェクトをかける
   //filter(BLUR, blurStrength); // ブラーの強度を変数で指定
+}
+
+function windowResized() {
+  // ウィンドウのサイズが変更されたときに呼び出される関数
+  resizeCanvas(windowWidth, windowHeight);
+  emitterSizeX = windowWidth; // エミッターのXサイズをウィンドウの幅に合わせる
 }
 
 class Particle {
