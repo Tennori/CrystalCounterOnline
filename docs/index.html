@@ -12,9 +12,19 @@
     /* Reset styles */
     body,
     div,
+    h2,
     button {
       margin: 0;
       padding: 0;
+    }
+
+    h2{
+      font-size:60%;
+      font-weight: bold;
+      margin-bottom:3%;
+    }
+    p{
+      font-size:40%;
     }
 
     body {
@@ -250,26 +260,25 @@
       font-size: 75%;
       cursor: pointer!important;
     }
-
     .modal {
     display: none; /* 初期状態では非表示 */
     position: fixed; /* 画面の上に固定 */
-    z-index: 1; /* 最前面に表示 */
+    z-index: 100; /* 最前面に表示 */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* モーダル外をスクロール可能に */
     background-color: rgba(0,0,0,0.4); /* 背景を半透明に */
   }
 
   /* モーダルのコンテンツスタイル */
   .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 画面中央に配置 */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: auto; /* 画面中央に配置 */
+    padding:5px 5px;
+    width: 100%;
+    height: 100%;
+    overflow:scroll; /* モーダル外をスクロール可能に */
     max-width: 600px;
   }
 
@@ -292,16 +301,24 @@
 </head>
 
 <body>
-<!-- モーダル -->
-<div id="myModal" class="modal">
+  <div id="myModal" class="modal">
 
-  <!-- モーダルコンテンツ -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>OBSのソース追加から、ブラウザの幅を800、高さを300にしてください。操作するときはOBSなら「対話(操作)」を。StreamLabs OBSの場合はキャンバス上のCrystalCounterを右クリックし、「インタラクト」から操作してください。</p>
+    <!-- モーダルコンテンツ -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>■使い方</h2>
+      <p>OBSでソース追加でブラウザソースとして使ってください。<br>その際のサイズは<b><u>幅800x高さ300</b></u>を推奨します。</p>
+      <p>実際のカウント操作は、<b><u>「対話(操作)」</b></u>で出てくるウィンドウ内で操作してください。<br>StreamLabs OBSの場合は、キャンバス上に設置されたCrystalCounterを右クリックし<br>出てきたメニューの中にある <b><u>「インタラクト」</b></u>で同様に出てくるウィンドウで操作します。</p>
+
+      <h2>■機能</h2>
+      <p>右上のハンバーガーマークからいくつか機能があります。</p>
+      <p>CounterMode：マッチングでの勝敗カウントする「Matching」モードと、カスタムでチームの勝利数をカウントする「Custom」モードを用意しました。</p>
+      <p>ColorMode：色調を変えます。
+      <p>Graphics：エフェクトの有無をしていします。Richはエフェクトを入れたもの。Simpleモードはカウント機能のみが表示されます。</p>
+    </div>
+  
   </div>
 
-</div>
   <!-- ハンバーガーメニュー -->
   <div class="hamburger" onclick="toggleMenu()">
     <div class="hamburger__line"></div>
@@ -369,17 +386,18 @@
 
 
   <script>
-window.onload = function() {
+    // ページ読み込み時に実行される関数
+    window.onload = function() {
   // モーダルを表示する
   document.getElementById('myModal').style.display = "block";
+
+  // モーダル自体がクリックされた時の処理
+  document.getElementById('myModal').addEventListener('click', function() {
+    // モーダルを非表示にする
+    this.style.display = "none";
+  });
 };
 
-// モーダルの閉じるボタンにイベントリスナーを追加する
-document.getElementsByClassName('close')[0].addEventListener('click', function() {
-  // モーダルを非表示にする
-  document.getElementById('myModal').style.display = "none";
-});
-    
     function toggleMenu() {
   var menu = document.getElementById("menu");
   if (menu.classList.contains("open")) {
