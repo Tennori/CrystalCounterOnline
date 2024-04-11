@@ -107,7 +107,6 @@
     /* Background gradients */
     #counter1 {
       background-color: rgba(15, 178, 236, 1);
-      background-image: repeating-conic-gradient(rgba(133, 214, 226, 0.75) 0deg, rgba(0, 139, 213, 0.75) 70deg, rgba(211, 255, 245, 0.75) 134deg);
       background: center no-repeat url(./Assets/SVG/BlueCrystal.svg);
       filter: drop-shadow(0 0 10px rgba(194, 248, 255, 1));
       background-blend-mode: screen;
@@ -116,15 +115,8 @@
     #counter2 {
       background-color: rgba(236, 15, 100, 1);
       background: center no-repeat url(./Assets/SVG/RedCrystal.svg);
-      /*background-image: repeating-conic-gradient(rgba(226, 133, 133, 1) 0deg, rgba(213, 0, 0, 1) 70deg, rgba(255, 227, 211, 1) 134deg);*/
       filter: drop-shadow(0 0 10px rgba(255, 202, 194, 1));
       background-blend-mode: screen;
-    }
-
-    /* Win/Lose text */
-    .winlose:after {
-      background-color: rgba(255, 255, 255, 0.5);
-      filter: blur(5px);
     }
 
     /* Button block display */
@@ -327,6 +319,7 @@
   </div>
   <div class="menu" id="menu" onclick="toggleMenu()">
     <div class="menu__content">
+      <div id="help" class="help">❓</div>
       <!-- 既存の大枠の2択メニュー -->
       <div class="menuCategory">
         <div class="menu-heading">Counter Mode</div>
