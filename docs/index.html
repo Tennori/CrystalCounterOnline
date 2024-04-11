@@ -18,13 +18,14 @@
       padding: 0;
     }
 
-    h2{
-      font-size:60%;
+    h2 {
+      font-size: 60%;
       font-weight: bold;
-      margin-bottom:3%;
+      margin-bottom: 3%;
     }
-    p{
-      font-size:40%;
+
+    p {
+      font-size: 40%;
     }
 
     body {
@@ -37,7 +38,6 @@
       height: 100vh;
       color: #fff;
       min-width: 800px;
-      height: 300px;
     }
 
     /* Counter styles */
@@ -54,18 +54,6 @@
       max-width: 40%;
     }
 
-    .counter:before {
-      /*content: ""; */
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 5px;
-      z-index: -1;
-    }
-
     .counter div {
       font-weight: bold;
       font-style: oblique;
@@ -73,6 +61,7 @@
       margin: 3px;
       margin-top: -5px;
     }
+
 
     .counter span {
       font-size: 128px;
@@ -85,6 +74,7 @@
       vertical-align: middle;
       transition: opacity 0.5s ease;
       /* イーズを追加 */
+      -webkit-text-stroke: 1px #888;
     }
 
     .counter button {
@@ -107,24 +97,22 @@
     /* Background gradients */
     #counter1 {
       background-color: rgba(15, 178, 236, 1);
-      background-image: repeating-conic-gradient(rgba(133, 214, 226, 0.75) 0deg, rgba(0, 139, 213, 0.75) 70deg, rgba(211, 255, 245, 0.75) 134deg);
       background: center no-repeat url(./Assets/SVG/BlueCrystal.svg);
       filter: drop-shadow(0 0 10px rgba(194, 248, 255, 1));
       background-blend-mode: screen;
+
     }
 
     #counter2 {
       background-color: rgba(236, 15, 100, 1);
       background: center no-repeat url(./Assets/SVG/RedCrystal.svg);
-      /*background-image: repeating-conic-gradient(rgba(226, 133, 133, 1) 0deg, rgba(213, 0, 0, 1) 70deg, rgba(255, 227, 211, 1) 134deg);*/
       filter: drop-shadow(0 0 10px rgba(255, 202, 194, 1));
       background-blend-mode: screen;
     }
 
-    /* Win/Lose text */
-    .winlose:after {
-      background-color: rgba(255, 255, 255, 0.5);
-      filter: blur(5px);
+    /*WinDefeat text*/
+    .winlose {
+      -webkit-text-stroke: 1px #888;
     }
 
     /* Button block display */
@@ -164,7 +152,7 @@
     }
 
     .hamburger:hover {
-      transform: scale(1.1);
+      transform: scale(1.3);
       /* ホバー時の拡大 */
     }
 
@@ -181,26 +169,28 @@
     }
 
     .menu {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 97;
-  /* アニメーションの設定 */
-  transition: backdrop-filter 1.0s ease, opacity 1.0s ease;
-  backdrop-filter: blur(0px);
-  opacity: 0%; /* メニューを最初は完全に透明にする */
-}
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 98;
+      /* アニメーションの設定 */
+      transition: opacity 1.0s ease;
+      backdrop-filter: blur(0px);
+      opacity: 0%;
+      /* メニューを最初は完全に透明にする */
+    }
 
-.menu.open {
-  display: block;
-  /* アニメーションの設定 */
-  backdrop-filter: blur(5px);
-  opacity: 100%; /* メニューが開かれると完全に不透明にする */
-}
+    .menu.open {
+      display: block;
+      /* アニメーションの設定 */
+      backdrop-filter: blur(5px);
+      opacity: 100%;
+      /* メニューが開かれると完全に不透明にする */
+    }
 
     .menu__content {
       position: absolute;
@@ -212,16 +202,16 @@
       color: #fff;
       /* テキストカラーを白に */
     }
-    
+
     canvas {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -2;
+      z-index: -1;
     }
 
     #mySVG {
-      z-index: -3;
+      z-index: -2;
       position: absolute;
       margin: auto;
       width: 100%;
@@ -240,67 +230,121 @@
         transform: rotateY(360deg);
       }
     }
+    
+    .menuCategory {
 
-
-    .menuCategory{
-
-      background:rgba(0, 0, 0, 0.5);
-      border-radius:5px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
       margin-top: 3px;
       padding: 10px;
       user-select: none;
     }
 
-    .menu-heading{
+    .menu-heading {
       font-size: 50%;
       font-weight: Bold;
     }
 
-    label{
+    label {
       font-size: 75%;
-      cursor: pointer!important;
+      cursor: pointer !important;
     }
+
     .modal {
-    display: none; /* 初期状態では非表示 */
-    position: fixed; /* 画面の上に固定 */
-    z-index: 100; /* 最前面に表示 */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.4); /* 背景を半透明に */
-  }
+      display: none;
+      /* 初期状態では非表示 */
+      position: fixed;
+      /* 画面の上に固定 */
+      z-index: 99;
+      /* 最前面に表示 */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(0px);
 
-  /* モーダルのコンテンツスタイル */
-  .modal-content {
-    background-color: rgba(0, 0, 0, 0.5);
-    margin: auto; /* 画面中央に配置 */
-    padding:5px 5px;
-    width: 100%;
-    height: 100%;
-    overflow:scroll; /* モーダル外をスクロール可能に */
-    max-width: 600px;
-  }
+      /* 背景を半透明に */
+    }
 
-  /* 閉じるボタンのスタイル */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
+    /* モーダルのコンテンツスタイル */
+    .modal-content {
+      background-color: rgba(0, 0, 0, 0.5);
+      margin: auto;
+      /* 画面中央に配置 */
+      padding: 5px 5px;
+      width: 100%;
+      height: 100%;
+      overflow: scroll;
+      /* モーダル外をスクロール可能に */
+      max-width: 600px;
+      backdrop-filter: blur(5px);
+    }
 
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+    /* 閉じるボタンのスタイル */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
 
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .help {
+      display: block;
+      color: #555;
+      cursor: pointer;
+      z-index: 98;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      margin: 5px auto;
+      font-size: 30px;
+      transition: transform 0.3s ease;
+      /* アニメーション追加 */
+    }
+
+    .help:hover {
+      transform: scale(1.3);
+      /* ホバー時の拡大 */
+    }
+
+    .help:before {
+      
+      content: "◯";
+      position: absolute;
+    }
+
+    .credit {
+      color: #888;
+      font-size: 10px;
+      position: fixed;
+      bottom: 0px;
+      right: 20px;
+      margin: 5px auto;
+    }
+
+    .licenseCredit {
+      color: #888;
+      font-size: 10px;
+    }
+
+    .licenseCredit {
+      color: #888;
+      font-size: 10px;
+    }
   </style>
 </head>
 
 <body>
+  <div id="help" class="help">？</div>
+  <div class="credit">X :@tenoritiger_fez</div>
   <div id="myModal" class="modal">
 
     <!-- モーダルコンテンツ -->
@@ -308,15 +352,21 @@
       <span class="close">&times;</span>
       <h2>■使い方</h2>
       <p>OBSでソース追加でブラウザソースとして使ってください。<br>その際のサイズは<b><u>幅800x高さ300</b></u>を推奨します。(プロパティから操作）</p>
-      <p>実際のカウント操作は、<b><u>「対話(操作)」</b></u>で出てくるウィンドウ内で操作してください。<br>StreamLabs OBSの場合は、キャンバス上に設置されたCrystalCounterを右クリックし<br>出てきたメニューの中にある <b><u>「インタラクト」</b></u>で同様に出てくるウィンドウで操作します。</p>
+      <p>実際のカウント操作は、<b><u>「対話(操作)」</b></u>で出てくるウィンドウ内で操作してください。<br>StreamLabs
+        OBSの場合は、キャンバス上に設置されたCrystalCounterを右クリックし<br>出てきたメニューの中にある <b><u>「インタラクト」</b></u>で同様に出てくるウィンドウで操作します。</p>
 
       <h2>■機能</h2>
-      <p>右上のハンバーガーマークからいくつか機能があります。</p>
+      <p>右上のハンバーガーメニューからいくつか機能があります。</p>
       <p>CounterMode：マッチングでの勝敗カウントする「Matching」モードと、カスタムでチームの勝利数をカウントする「Custom」モードを用意しました。</p>
       <p>ColorMode：色調を変えます。
       <p>Graphics：エフェクトの有無を指定します。Richはエフェクトを入れたもの。Simpleモードはカウント機能のみが表示されます。</p>
+      <p class="licenseCredit">This website utilizes the p5.js library, which is released under the GNU GPL v2
+        license.<br>For more information, please refer to the <a
+          href="https://github.com/processing/p5.js/blob/main/license.txt" target="_blank" style="color:#bbb;">p5.js
+          license</a>.</p>
     </div>
-  
+  </div>
+
   </div>
 
   <!-- ハンバーガーメニュー -->
@@ -330,37 +380,38 @@
       <!-- 既存の大枠の2択メニュー -->
       <div class="menuCategory">
         <div class="menu-heading">Counter Mode</div>
-      <label class="radio-label" for="matching">
-      <input type="radio" id="matching" name="counterMode" value="matching" onchange="changeCounterText()" checked>Matching
-      </label>
-      <label class="radio-label" for="custom">
-      <input type="radio" id="custom" name="counterMode" value="custom" onchange="changeCounterText()">Custom
-      </label>
+        <label class="radio-label" for="matching">
+          <input type="radio" id="matching" name="counterMode" value="matching" onchange="changeCounterText()"
+            checked>Matching
+        </label>
+        <label class="radio-label" for="custom">
+          <input type="radio" id="custom" name="counterMode" value="custom" onchange="changeCounterText()">Custom
+        </label>
       </div>
 
 
       <!-- 新しい大枠の2択メニュー -->
       <div class="menuCategory">
         <div class="menu-heading">Color Mode</div>
-      <label class="radio-label" for="White">
-      <input type="radio" id="White" name="colorMode" value="White" onchange="changeColorText()" checked>White
-      </label>
-      <label class="radio-label" for="Black">
-      <input type="radio" id="Black" name="colorMode" value="Black" onchange="changeColorText()">Black
-      </label>
-      <label class="radio-label" for="Mono">
-        <input type="radio" id="Mono" name="colorMode" value="Mono" onchange="changeColorText()">Monochrome
+        <label class="radio-label" for="White">
+          <input type="radio" id="White" name="colorMode" value="White" onchange="changeColorText()" checked>White
+        </label>
+        <label class="radio-label" for="Black">
+          <input type="radio" id="Black" name="colorMode" value="Black" onchange="changeColorText()">Black
+        </label>
+        <label class="radio-label" for="Mono">
+          <input type="radio" id="Mono" name="colorMode" value="Mono" onchange="changeColorText()">Monochrome
         </label>
       </div>
 
       <div class="menuCategory">
         <div class="menu-heading">Graphics</div>
-      <label class="radio-label" for="Rich">
-      <input type="radio" id="Rich" name="Graphics" value="Rich" onchange="changeEffectsStatus()" checked>Rich
-      </label>
-      <label class="radio-label" for="Simple">
-      <input type="radio" id="Simple" name="Graphics" value="Simple" onchange="changeEffectsStatus()">Simple
-      </label>
+        <label class="radio-label" for="Rich">
+          <input type="radio" id="Rich" name="Graphics" value="Rich" onchange="changeEffectsStatus()" checked>Rich
+        </label>
+        <label class="radio-label" for="Simple">
+          <input type="radio" id="Simple" name="Graphics" value="Simple" onchange="changeEffectsStatus()">Simple
+        </label>
       </div>
     </div>
   </div>
@@ -386,26 +437,24 @@
 
 
   <script>
-    // ページ読み込み時に実行される関数
-    window.onload = function() {
-  // モーダルを表示する
-  document.getElementById('myModal').style.display = "block";
 
-  // モーダル自体がクリックされた時の処理
-  document.getElementById('myModal').addEventListener('click', function() {
-    // モーダルを非表示にする
-    this.style.display = "none";
-  });
-};
+    window.onload = modalActive(); // ページ読み込み時にmodalActive関数が実行される
+    document.getElementById('help').addEventListener('click', modalActive);
+
+    function modalActive() { // modalの表示のために実行される関数
+      document.getElementById('myModal').style.display = "block";   // モーダルを表示する
+      document.getElementById('myModal').addEventListener('click', function () { this.style.display = "none" });
+    }
+
 
     function toggleMenu() {
-  var menu = document.getElementById("menu");
-  if (menu.classList.contains("open")) {
-    menu.classList.remove("open"); // メニューが開いている場合は閉じる
-  } else {
-    menu.classList.add("open"); // メニューが閉じている場合は開く
-  }
-}
+      var menu = document.getElementById("menu");
+      if (menu.classList.contains("open")) {
+        menu.classList.remove("open"); // メニューが開いている場合は閉じる
+      } else {
+        menu.classList.add("open"); // メニューが閉じている場合は開く
+      }
+    }
 
 
     function changeCounterText() {
@@ -424,53 +473,52 @@
     }
 
     function changeColorText() {
-  var WhiteCheckbox = document.getElementById("White");
-  var BlackCheckbox = document.getElementById("Black");
-  var MonoCheckbox = document.getElementById("Mono");
-  var body = document.body;
-  var btns = document.getElementsByClassName("counterbtn");
-  var counterElement1 = document.getElementById('counter1');
-  var counterElement2 = document.getElementById('counter2');
+      var WhiteCheckbox = document.getElementById("White");
+      var BlackCheckbox = document.getElementById("Black");
+      var MonoCheckbox = document.getElementById("Mono");
+      var body = document.body;
+      var btns = document.getElementsByClassName("counterbtn");
+      var counterElement1 = document.getElementById('counter1');
+      var counterElement2 = document.getElementById('counter2');
 
-  if (WhiteCheckbox.checked) {
-    body.style.color = "#fff";
-    body.style.filter = "brightness(100%) contrast(100%)";
-    counterElement1.style.color ="#fff";
-    counterElement2.style.color ="#fff";
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].style.color = "#fff";
+      if (WhiteCheckbox.checked) {
+        body.style.filter = "brightness(100%) contrast(100%)";
+        counterElement1.style.color = "#fff";
+        counterElement2.style.color = "#fff";
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].style.color = "#fff";
+        }
+      } else if (BlackCheckbox.checked) {
+        counterElement1.style.color = "#111";
+        counterElement2.style.color = "#111";
+        body.style.filter = "brightness(90%) contrast(150%)";
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].style.color = "#111";
+        }
+      } else if (MonoCheckbox.checked) {
+        counterElement1.style.color = "#111";
+        counterElement2.style.color = "#fff";
+        body.style.filter = "grayscale(100%) brightness(75%) contrast(200%)";
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].style.color = "#fff";
+        }
+      }
     }
-  } else if (BlackCheckbox.checked) {
-    counterElement1.style.color ="#000";
-    counterElement2.style.color ="#000";
-    body.style.filter = "brightness(75%) contrast(150%)";
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].style.color = "#000";
-    }
-  } else if (MonoCheckbox.checked) {
-    counterElement1.style.color ="#000";
-    counterElement2.style.color ="#fff";
-    body.style.filter = "grayscale(100%) brightness(75%) contrast(200%)";
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].style.color = "#fff";
-    }
-  }
-}
 
-function changeEffectsStatus() {
-  var richEffectCheckbox = document.getElementById("Rich");
-  var simpleEffectCheckbox = document.getElementById("Simple");
-  var bigCrystal = document.getElementById('mySVG');
-  var canvas = document.getElementById('canvas');
+    function changeEffectsStatus() {
+      var richEffectCheckbox = document.getElementById("Rich");
+      var simpleEffectCheckbox = document.getElementById("Simple");
+      var bigCrystal = document.getElementById('mySVG');
+      var canvas = document.getElementById('canvas');
 
-  if (richEffectCheckbox.checked) {
-    bigCrystal.style.contentVisibility = "visible";
-    canvas.style.contentVisibility = "visible";
-  } else if (simpleEffectCheckbox.checked) {
-    bigCrystal.style.contentVisibility = "hidden";
-    canvas.style.contentVisibility = "hidden";
-  }
-}
+      if (richEffectCheckbox.checked) {
+        bigCrystal.style.contentVisibility = "visible";
+        canvas.style.contentVisibility = "visible";
+      } else if (simpleEffectCheckbox.checked) {
+        bigCrystal.style.contentVisibility = "hidden";
+        canvas.style.contentVisibility = "hidden";
+      }
+    }
 
 
 
@@ -510,7 +558,7 @@ function changeEffectsStatus() {
       }
     }
   </script>
-  <div id ="canvas"></div> <!-- p5.jsのキャンバスを指定して作成-->
+  <div id="canvas"></div> <!-- p5.jsのキャンバスを指定して作成-->
 </body>
 
 </html>
